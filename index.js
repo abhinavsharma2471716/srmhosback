@@ -43,6 +43,22 @@ con.connect(function (error) {
         });
 
     });
+
+    app.post('/addstory', (req, res) => {
+        //res.send('Hello World');
+
+        var title = req.body.title1;
+        var story = req.body.story1;
+       
+
+        var sql = 'INSERT INTO article (title,story) VALUES ("' + title + '","' + story + '")';
+
+        con.query(sql, function (err, result) {
+            if (err) throw err;
+            console.log("1 story inserted");
+        });
+
+    });
     /*
     app.post('/add1', (req, res) => {
         //res.send('Hello World');
@@ -77,11 +93,11 @@ con.connect(function (error) {
 
     });
     */
-    app.get('/getUser', (req, res) => {
+    app.get('/getUsers', (req, res) => {
         
 
 
-        var sql = 'SELECT * FROM hospitaltb ';
+        var sql = 'SELECT * FROM article';
 
         con.query(sql, function (err, result) {
             res.send(result)
